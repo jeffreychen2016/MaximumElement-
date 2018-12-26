@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 // class Input
 // {
@@ -61,8 +62,30 @@ class Solution
         //         }
 
         // SOLUTION 2: (still getting timeout error after case 17.)
+        //         var N = Convert.ToInt64(Console.ReadLine());
+        //         var stack = new List<long>();
+
+        //         for (var i = 0; i < N; i++)
+        //         {
+        //             var line = Console.ReadLine();
+        //             if (line[0] == '1')
+        //             {
+        //                 var value = Convert.ToInt64(line.Substring(2));
+        //                 stack.Add(value);
+        //             }
+        //             else if (line[0] == '2')
+        //             {
+        //                 stack.RemoveAt(stack.Count - 1);
+        //             }
+        //             else if (line[0] == '3')
+        //             {
+        //                 Console.WriteLine(stack.Max(val => val));
+        //             }
+        //         }
+
+        // SOLUTION 3: (Well... still timing out after test case 17... )
         var N = Convert.ToInt64(Console.ReadLine());
-        var stack = new List<long>();
+        var stack = new Stack();
 
         for (var i = 0; i < N; i++)
         {
@@ -70,15 +93,15 @@ class Solution
             if (line[0] == '1')
             {
                 var value = Convert.ToInt64(line.Substring(2));
-                stack.Add(value);
+                stack.Push(value);
             }
             else if (line[0] == '2')
             {
-                stack.RemoveAt(stack.Count - 1);
+                stack.Pop();
             }
             else if (line[0] == '3')
             {
-                Console.WriteLine(stack.Max(val => val));
+                Console.WriteLine(stack.ToArray().Max());
             }
         }
     }
